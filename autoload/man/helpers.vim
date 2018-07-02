@@ -41,9 +41,9 @@ endfunction
 
 function! man#helpers#get_cmd_arg(sect, page)
   if a:sect == ''
-    return a:page
+    return shellescape(a:page)
   else
-    return man#helpers#section_arg().' '.a:sect.' '.a:page
+    return shellescape(man#helpers#section_arg().' '.a:sect.' '.a:page)
   endif
 endfunction
 
