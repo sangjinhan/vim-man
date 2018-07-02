@@ -29,8 +29,12 @@ function! man#get_page(split_type, ...)
     let sect = ''
   endif
   if !s:manpage_exists(sect, page)
-    call man#helpers#error("No manual entry for '".page."'.")
-    return
+    let cpp_page = 'std::'.page
+    if !s:manpage_exists(sect, cpp_page)
+      call man#helpers#error("No manual entry for '".page."'.")
+      return
+    endif
+    let page = cpp_page
   endif
 
   call s:update_man_tag_variables()
